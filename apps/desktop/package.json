@@ -1,0 +1,25 @@
+{
+  "name": "desktop",
+  "module": "index.ts",
+  "version": "1.0.0",
+  "main": "./dist/main.js",
+  "type": "commonjs",
+  "private": true,
+  "scripts": {
+    "build:ts": "tsup src/main.ts src/preload.ts --format cjs --target node20 --external electron   --clean",
+    "start": "bun run build:ts && electron-forge start",
+    "package": "bun run build:ts && electron-forge package",
+    "make": "bun run build:ts && electron-forge make"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.11.2",
+    "@electron-forge/maker-squirrel": "^7.11.2",
+    "@electron-forge/maker-zip": "^7.11.2",
+    "@types/bun": "latest",
+    "electron": "^42.5.0",
+    "tsup": "^8.5.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

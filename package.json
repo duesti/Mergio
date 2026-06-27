@@ -1,0 +1,22 @@
+{
+  "name": "mergio-app",
+  "type": "module",
+  "private": true,
+
+  "workspaces": [
+    "apps/*"
+  ],
+
+  "scripts": {
+    "dev": "concurrently -n \"rsbuild,electron\" -c \"cyan,magenta\" \"bun --filter frontend dev\" \"bun --filter desktop start\""
+  },
+
+  "devDependencies": {
+    "@biomejs/biome": "2.5.1",
+    "@types/bun": "latest",
+    "concurrently": "^10.0.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

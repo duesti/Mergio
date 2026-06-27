@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../../assets/fonts/SpaceGrotesk.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: #0A0A10;
+  color: #F2F2F6;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
+}
+
+p {
+  line-height: 150%;
+}
+
+h1 {
+  line-height: 100%;
+}
