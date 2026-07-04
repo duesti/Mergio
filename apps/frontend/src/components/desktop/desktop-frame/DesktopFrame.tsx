@@ -1,43 +1,57 @@
 import { Maximize, Minus, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import mergioLogo from "@/assets/mergio-logo.svg";
 import { useElectronWindow } from "@/hooks/useElectronWindow";
-import "./DesktopFrame.css"
+import "./DesktopFrame.css";
 
-function DesktopFrame() {
+function DesktopFrame({ activeTab }: { activeTab: string }) {
 	const { isElectron, minimize, maximize, close } = useElectronWindow();
 
 	const electronControls = [
 		{
 			id: 0,
 			icon: <Minus className="size-4" />,
-			func: minimize
+			func: minimize,
 		},
 		{
 			id: 1,
 			icon: <Maximize className="size-4" />,
-			func: maximize
+			func: maximize,
 		},
 		{
 			id: 2,
 			icon: <X className="size-4" />,
-			func: close
-		}
-	]
+			func: close,
+		},
+	];
 
 	return (
 		<header className="p-4 select-none grid grid-cols-3 items-center app-region-drag">
 			<section className="flex gap-2 items-center">
 				<img src={mergioLogo} alt="M" className="size-6 pointer-events-none" />
-				<p className="text-xl">Mergio</p>
+				<p className="text-sm">Mergio</p>
 			</section>
 
 			<section className="justify-self-center">
-				<p className="opacity-80 font-medium">Главная</p>
+				<AnimatePresence mode="wait">
+					<motion.p
+						key={activeTab}
+						className="opacity-60 font-medium text-sm"
+						initial={{ y: 4, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						exit={{ y: -4, opacity: 0 }}
+						transition={{
+							duration: 0.15
+						}}
+					>
+						{activeTab || "Главная"}
+					</motion.p>
+				</AnimatePresence>
 			</section>
 
-			<section className="flex justify-end gap-1">
-				{isElectron && electronControls.map(
-					(control, _) => (
+			<section className="flex justify-end gap-2">
+				{isElectron &&
+					electronControls.map((control, _) => (
 						<button
 							type="button"
 							key={control.id}
@@ -46,8 +60,7 @@ function DesktopFrame() {
 						>
 							{control.icon}
 						</button>
-					)
-				)}
+					))}
 			</section>
 		</header>
 	);

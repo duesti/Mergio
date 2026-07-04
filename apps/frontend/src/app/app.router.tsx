@@ -8,7 +8,7 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: (
-					<h1>Mergio v0.0.1</h1>
+					<h1>Beta</h1>
 				),
 			},
 		],
